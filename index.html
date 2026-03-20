@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empresário Digital | Edições de Executivos</title>
+    <meta name="description" content="Explore as edições exclusivas do Empresário Digital com insights de executivos renomados.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Figtree:wght@400;500;700&family=Fragment+Mono&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-mode">
+    <!-- Header Navigation -->
+    <header class="main-header" id="main-nav">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="Logo Empresário Digital.png" alt="Empresário Digital" class="logo-img">
+            </div>
+            
+            <div class="header-actions">
+                <a href="#" class="btn-primary pill">Assinar Agora</a>
+                <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Dropdown Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <div class="mobile-nav-links">
+                <a href="#featured" class="mobile-nav-link">Destaque</a>
+                <a href="#editions" class="mobile-nav-link">Edições</a>
+                <a href="#about" class="mobile-nav-link">Sobre</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section: Featured Edition -->
+        <section id="featured" class="hero">
+            <div class="hero-bg">
+                <img src="assets/featured.png" alt="Capa da Edição Atual" id="hero-image">
+                <div class="overlay-gradient"></div>
+            </div>
+            <div class="container hero-container">
+                <div class="hero-content" id="featured-content">
+                    <span class="badge featured-badge">Edição Atual</span>
+                    <h1 class="display-title" id="featured-title">Carregando...</h1>
+                    <p class="hero-description" id="featured-desc"></p>
+                    <div class="hero-actions">
+                        <a href="#" class="btn-primary" id="btn-read-featured">Visualizar Edição Digital</a>
+                        <a href="#" class="btn-secondary youtube-btn" id="btn-video-featured" style="display: none;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                            Assistir no YouTube
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Editions Gallery -->
+        <section id="editions" class="editions-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Edições Anteriores</h2>
+                    <p class="section-subtitle">Uma jornada cronológica pela mente dos maiores líderes do mundo.</p>
+                </div>
+                
+                <div class="editions-grid" id="editions-grid">
+                    <!-- Dynamic Content Injected Here -->
+                    <div class="loader-placeholder" style="grid-column: 1/-1; text-align: center; padding: 40px; color: #888;">Carregando edições...</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Newsletter Section -->
+        <section id="newsletter" class="newsletter-section reveal">
+            <div class="container">
+                <div class="newsletter-card">
+                    <div class="newsletter-content">
+                        <h2 class="section-title">Acesse o Próximo Nível</h2>
+                        <p class="section-subtitle">Receba insights exclusivos e convites para edições fechadas do Empresário Digital.</p>
+                        
+                        <form id="lead-form" class="lead-form">
+                            <div class="form-group">
+                                <input type="text" id="user-name" name="name" placeholder="Seu Nome" required>
+                                <label for="user-name">Seu Nome</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="user-email" name="email" placeholder="seu@email.com" required>
+                                <label for="user-email">Seu E-mail</label>
+                            </div>
+                            <button type="submit" class="btn-primary" id="btn-submit-lead">
+                                <span class="btn-text">Quero Me Inscrever</span>
+                                <div class="btn-loader"></div>
+                            </button>
+                        </form>
+                        <div id="form-feedback" class="form-feedback"></div>
+                    </div>
+                    <div class="newsletter-visual">
+                        <div class="blob-gradient"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <div class="logo">
+                        <img src="Logo Empresário Digital.png" alt="Empresário Digital" class="logo-img footer-logo">
+                    </div>
+                    <p>Inspirando a próxima geração de líderes criativos.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>Plataforma</h4>
+                        <a href="#">Newsletter</a>
+                        <a href="#">Comunidade</a>
+                        <a href="#">Assinatura</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Legal</h4>
+                        <a href="#">Privacidade</a>
+                        <a href="#">Termos</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Empresário Digital. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
