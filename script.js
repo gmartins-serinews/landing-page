@@ -53,36 +53,47 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Smooth Scroll for Nav Links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth'
-                });
+    // Smooth Scroll for Nav Links & Internal Anchors
+    document.addEventListener('click', (e) => {
+        const anchor = e.target.closest('a[href^="#"]');
+        if (!anchor) return;
+
+        const href = anchor.getAttribute('href');
+        
+        // Only prevent default if it's a valid internal anchor (not just '#' and target exists)
+        if (href && href.startsWith('#') && href.length > 1) {
+            try {
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            } catch (err) {
+                // Ignore invalid selectors
             }
-        });
+        }
     });
 
-    // Mock Interaction Feedback
-    const buttons = document.querySelectorAll('.btn-primary, .btn-secondary, .card-link-icon');
-    buttons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            if (btn.getAttribute('href') === '#') {
-                e.preventDefault();
-                console.log('Action triggered: ' + btn.textContent.trim());
-                
-                // If it's the "Assinar Agora" button, scroll to newsletter
-                if (btn.textContent.trim().toLowerCase().includes('assinar')) {
-                    const newsletter = document.getElementById('newsletter');
-                    if (newsletter) {
-                        newsletter.scrollIntoView({ behavior: 'smooth' });
-                    }
+    // Interaction Feedback for placeholder links
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.btn-primary, .btn-secondary, .card-link-icon');
+        if (!btn) return;
+
+        const href = btn.getAttribute('href');
+        if (href === '#') {
+            e.preventDefault();
+            console.log('Action triggered: ' + btn.textContent.trim());
+            
+            // If it's the "Assinar Agora" button, scroll to newsletter
+            if (btn.textContent.trim().toLowerCase().includes('assinar')) {
+                const newsletter = document.getElementById('newsletter');
+                if (newsletter) {
+                    newsletter.scrollIntoView({ behavior: 'smooth' });
                 }
             }
-        });
+        }
     });
 
     // Supabase Integration for Lead Form
@@ -189,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h3 class="card-title">${ed.title}</h3>
                     <p class="card-executive">${ed.executive_name}${ed.executive_role ? ', ' + ed.executive_role : ''}</p>
                     <div class="card-links">
-                        <a href="#" class="card-link">Visualizar</a>
+                        <a href="${ed.url || '#'}" class="card-link" target="_blank">Visualizar</a>
                         <a href="${ed.video_url || '#'}" class="card-link-icon" target="_blank">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.42 8.6.42 8.6.42s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25a29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
                         </a>
@@ -208,6 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const descEl = document.getElementById('featured-desc');
         const imgEl = document.getElementById('hero-image');
         const videoBtn = document.getElementById('btn-video-featured');
+        const readBtn = document.getElementById('btn-read-featured');
 
         if (titleEl) titleEl.innerHTML = `${ed.executive_name}: <br>${ed.title}`;
         if (descEl) descEl.textContent = ed.subtitle || '';
@@ -221,6 +233,11 @@ document.addEventListener('DOMContentLoaded', () => {
             };
         }
         
+        if (readBtn && ed.url && ed.url !== '#') {
+            readBtn.href = ed.url;
+            readBtn.target = '_blank';
+        }
+
         if (videoBtn && ed.video_url && ed.video_url !== '#') {
             videoBtn.href = ed.video_url;
             videoBtn.style.display = 'flex';
